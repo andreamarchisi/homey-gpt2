@@ -7,8 +7,9 @@ app.use(express.json());
 app.post('/trigger-homey-flow', async (req, res) => {
   const { deviceIds } = req.body;
   try {
-    // URL del webhook di Homey
-    const webhookUrl = 'https://webhooks.athom.com/webhook/648d9cdc3e7ea90bb080ab45?homey=5df781c9a4a24139f9a2dbfa';
+    // URL del webhook di Homey con il parametro event
+    const eventName = 'specific_device_event'; // Sostituisci con il nome dell'evento corretto
+    const webhookUrl = `https://webhooks.athom.com/webhook/648d9cdc3e7ea90bb080ab45?homey=5df781c9a4a24139f9a2dbfa&event=${eventName}`;
     
     // Log della richiesta inviata
     console.log('Invio richiesta a:', webhookUrl);
@@ -28,9 +29,10 @@ app.post('/trigger-homey-flow', async (req, res) => {
     // Log dei dettagli dell'errore se disponibili
     if (error.response) {
       console.error('Errore risposta:', error.response.data);
+      res.status(error.response.status).json({ status: 'Error triggering flow', error: error.response.data });
+    } else {
+      res.status(500).json({ status: 'Error triggering flow', error: error.message });
     }
-    
-    res.status(500).json({ status: 'Error triggering flow', error: error.message });
   }
 });
 
