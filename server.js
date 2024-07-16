@@ -7,8 +7,8 @@ app.use(express.json());
 app.post('/trigger-homey-flow', async (req, res) => {
   const { deviceIds } = req.body;
   try {
-    // URL del webhook di Homey
-    const webhookUrl = 'https://webhook.site/293ddded-f194-4b9f-b8ea-6259c120eb52';
+    // URL del webhook di Homey (aggiorna con l'URL del webhook di Homey copiato)
+    const webhookUrl = 'URL_DEL_WEBHOOK_DI_HOMEY';
     
     // Log della richiesta inviata
     console.log('Invio richiesta a:', webhookUrl);
@@ -48,6 +48,10 @@ app.get('/device-status', async (req, res) => {
   } catch (error) {
     res.status(500).json({ status: 'Error getting device status', error: error.message });
   }
+});
+
+app.get('/gpt-endpoint', (req, res) => {
+  res.json({ message: 'Hello, world!' });
 });
 
 app.get('/', (req, res) => {
