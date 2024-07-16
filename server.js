@@ -7,8 +7,8 @@ app.use(express.json());
 app.post('/trigger-homey-flow', async (req, res) => {
   const { deviceIds } = req.body;
   try {
-    // URL del webhook di Homey (aggiorna con l'URL del webhook di Homey copiato)
-    const webhookUrl = 'https://webhook.site/293ddded-f194-4b9f-b8ea-6259c120eb52';
+    // URL del webhook di Homey (aggiorna con l'URL del webhook di Homey corretto)
+    const webhookUrl = 'https://webhooks.athom.com/webhook/648d9cdc3e7ea90bb080ab45?homey=5df781c9a4a24139f9a2dbfa';
     
     // Log della richiesta inviata
     console.log('Invio richiesta a:', webhookUrl);
