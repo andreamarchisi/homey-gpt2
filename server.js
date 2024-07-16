@@ -34,12 +34,26 @@ app.post('/trigger-homey-flow', async (req, res) => {
   }
 });
 
-// Aggiungi questa parte per gestire la root
+app.get('/device-status', async (req, res) => {
+  const { deviceId } = req.query;
+  try {
+    // Simula la risposta dello stato del dispositivo
+    const deviceStatus = {
+      deviceId: deviceId,
+      status: 'online', // Può essere 'online', 'offline', ecc.
+      batteryLevel: 80 // Percentuale della batteria
+    };
+    
+    res.status(200).json(deviceStatus);
+  } catch (error) {
+    res.status(500).json({ status: 'Error getting device status', error: error.message });
+  }
+});
+
 app.get('/', (req, res) => {
   res.send('Hello, this is the Homey Flow Trigger server!');
 });
 
-// Porta su cui il server ascolterà le richieste
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
