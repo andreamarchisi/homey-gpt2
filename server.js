@@ -8,7 +8,7 @@ app.post('/trigger-homey-flow', async (req, res) => {
   const { deviceIds } = req.body;
   try {
     // URL del webhook di Homey con il parametro event
-    const eventName = 'specific_device_event'; // Sostituisci con il nome dell'evento corretto
+    const eventName = 'trigger_device_flow'; // Sostituisci con il nome dell'evento corretto
     const webhookUrl = `https://webhooks.athom.com/webhook/648d9cdc3e7ea90bb080ab45?homey=5df781c9a4a24139f9a2dbfa&event=${eventName}`;
     
     // Log della richiesta inviata
@@ -24,7 +24,7 @@ app.post('/trigger-homey-flow', async (req, res) => {
     res.status(200).json({ status: 'Flow triggered', response: response.data });
   } catch (error) {
     // Log dell'errore
-    console.error('Errore durante l\'invio del webhook a Homey:', error.message);
+    console.error('Errore durante l'invio del webhook a Homey:', error.message);
     
     // Log dei dettagli dell'errore se disponibili
     if (error.response) {
@@ -64,4 +64,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
