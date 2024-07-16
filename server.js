@@ -8,7 +8,7 @@ app.post('/trigger-homey-flow', async (req, res) => {
   const { deviceIds } = req.body;
   try {
     // URL del webhook di Homey (aggiorna con l'URL del webhook di Homey copiato)
-    const webhookUrl = 'URL_DEL_WEBHOOK_DI_HOMEY';
+    const webhookUrl = 'https://webhook.site/293ddded-f194-4b9f-b8ea-6259c120eb52';
     
     // Log della richiesta inviata
     console.log('Invio richiesta a:', webhookUrl);
@@ -62,4 +62,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
